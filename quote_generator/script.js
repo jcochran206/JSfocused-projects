@@ -9,14 +9,27 @@ const twitterBtn = document.getElementById('twitter');
 let apiQuotes = []; 
 //new quote request from user
 function newQuote(){
-    let randomQuote = Math.floor(Math.random() * apiQuotes.length); 
-    return console.log(apiQuotes[randomQuote]);
+    //randomize quotes
+    let randomQuote = apiQuotes[Math.floor(Math.random() * apiQuotes.length)]; 
+    //check if author is blank
+    if(!randomQuote.author){
+        quoteAuthor.textContent = 'Unknown'
+    }else {
+        quoteAuthor.textContent = randomQuote.author;
+    }
+
+    //check if its a long quote
+    if (randomQuote.text.length > 100){
+        quoteText.classList.add('long-quote');
+    }else {
+        quoteText.classList.remove('long-quote');
+    }
+    quoteText.textContent = randomQuote.text;
+
 }
 
 
 async function getQuotes() {
-    //randomize quotes
-    //call function to display
     const apiURL = 'https://type.fit/api/quotes';
     try {
         const response = await fetch(apiURL);
