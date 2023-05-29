@@ -4,11 +4,26 @@ const quoteText = document.getElementById('quote');
 const quoteAuthor = document.getElementById('author');
 const newQuoteBtn = document.getElementById('new-quote');
 const twitterBtn = document.getElementById('twitter');
+const loader = document.getElementById('loader');
 
 //get quotes and set into array
 let apiQuotes = []; 
+
+//show loading 
+function loading(){
+    loader.hidden = false;
+    quoteContainer.hidden = true;
+}
+
+//hide loading 
+function complete(){
+    quoteContainer.hidden = false;
+    loader.hidden = true;
+}
+
 //new quote request from user
 function newQuote(){
+    loading();
     //randomize quotes
     let randomQuote = apiQuotes[Math.floor(Math.random() * apiQuotes.length)]; 
     //check if author is blank
@@ -24,12 +39,15 @@ function newQuote(){
     }else {
         quoteText.classList.remove('long-quote');
     }
+    //set quote and hide loader
     quoteText.textContent = randomQuote.text;
+    complete();
 
 }
 
 
 async function getQuotes() {
+    loading();
     const apiURL = 'https://type.fit/api/quotes';
     try {
         const response = await fetch(apiURL);
@@ -41,8 +59,6 @@ async function getQuotes() {
 }
 
 function twitterQuote(){
-   // const twitterUrl = `https://twitter.com/intent/tweet?text=${quoteText.textContent} - ${quoteAuthor.textContent}`;
-   // window.open(twitterUrl, _blank);
    alert('due to resent changes in dev policy, I have not opted into using dev account to post');
 }
 
