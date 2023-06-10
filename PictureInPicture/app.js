@@ -20,7 +20,8 @@ button.addEventListener('click', async () =>{
     //disable btn
     button.disabled = true;
     //start Pic in Pic
-    await videoElement.requestPictureInPicture();
+    await videoElement.requestPictureInPicture().then((requestPictureInPictureWindow
+    ));
     //reset
     button.disabled = false;
 })
