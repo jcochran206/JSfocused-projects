@@ -1,2 +1,2 @@
 //dom elements 
-const button = document.getElementById
+//const button = document.getElementById
