@@ -21,6 +21,7 @@ function tellMe(joke){
 }
 
 //Get Jokes utilizing fetch function with try catch 
+//source for joke api located here: JokeAPI https://sv443.net/jokeapi/v2/
 async function getJokes(){
     let joke = '';
     const url = 'https://v2.jokeapi.dev/joke/Any';
@@ -37,5 +38,5 @@ async function getJokes(){
         console.log(`fetch error: ${error.message}`)
     }
 }
-
+//event listener for button click to tell jokes 
 button.addEventListener('click', getJokes);
