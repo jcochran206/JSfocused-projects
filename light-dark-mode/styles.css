@@ -173,7 +173,7 @@ p{
 }
 
 /*Dark theme switcher*/
-.switch-wrapper {
+.switcher-wrapper {
     display: flex;
     align-items: center;
     z-index: 100;
@@ -182,7 +182,7 @@ p{
     top: 30px;
 }
 
-.switch-wrapper span {
+.switcher-wrapper span {
     margin-right: 10px;
     font-size: 1rem;
 }
