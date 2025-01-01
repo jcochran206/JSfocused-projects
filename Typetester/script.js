@@ -90,5 +90,10 @@ document.addEventListener('keydown', (e) => {
         span.textContent = textArray[i];
         textContainer.appendChild(span);
     }
+
+    if(totalTyped.length >= 20){
+        const scrollAmount = (totalTyped.length - 20) * 14;
+        textContainer.scrollLeft;
+    }
 })
 
