@@ -32,6 +32,14 @@ const timerElement = document.getElementById('timer');
 const tryAgainButton = document.getElementById('try-again');
 const finalScoreElement = document.getElementById('final-score');
 
+//variables 
+let totalTyped = '';
+let currentCharIndex = 0; 
+let errorsChar = 0;
+let longText = generationLongText();
+
+textContainer.textContent = longText;
+
 //shuffleArray 
 function shuffleArray(array) {
     for(let i = array.length - 1; i > 0; i--){
@@ -48,8 +56,39 @@ function generationLongText() {
     return shuffleWords.join(' '); 
 }
 
-let longText = generationLongText();
+//event handler to display and handle text 
+document.addEventListener('keydown', (e) => {
+    if(e.key === 'Backspace') {
+        if(totalTyped.length > 0){
+            currentCharIndex = Math.max(currentCharIndex - 1, 0);
+            totalTyped = totalTyped.slice(0, -1);
+        }
+    }else if(e.key.length === 1 && !e.ctrlKey && !e.metaKey){
+        totalTyped += e.key;
+        currentCharIndex ++;
+    }
 
-//console.log(longText);
-textContainer.textContent = longText;
+    console.log('e.key', e.key, 'totalTyped', totalTyped, 'currentindex', currentCharIndex);
+
+    const textArray = longText.split('');
+    textContainer.innerText = '';
+
+    errorsChar = 0;
+
+    for(let i = 0; i < textArray.length; i++) {
+        const span = document.createElement('span');
+
+        if(i < totalTyped.length) {
+            if(totalTyped[i] === textArray[i]){
+                span.classList.add('correct');
+            }else{
+                span.classList.add('error');
+                errorsChar++;
+            }
+        }
+
+        span.textContent = textArray[i];
+        textContainer.appendChild(span);
+    }
+})
 
