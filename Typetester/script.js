@@ -33,10 +33,15 @@ const tryAgainButton = document.getElementById('try-again');
 const finalScoreElement = document.getElementById('final-score');
 
 //variables 
+//variables for text 
 let totalTyped = '';
 let currentCharIndex = 0; 
 let errorsChar = 0;
 let longText = generationLongText();
+//timer variables 
+let timeLeft = 30;
+let timerIntervel;
+let typingStarted = false;
 
 textContainer.textContent = longText;
 
@@ -56,8 +61,43 @@ function generationLongText() {
     return shuffleWords.join(' '); 
 }
 
+//start countdown timer 
+function startTimer() {
+    if(!typingStarted){
+        typingStarted = true;
+        timerIntervel = setInterval(()=> {
+            timeLeft--;
+            timerElement.textContent = `Time left: ${timeLeft}s`;
+            if(timeLeft <= 0) {
+                clearInterval(timerIntervel);
+                endTest();
+            }
+        }, 1000)
+    }
+}
+
+
+
+//End the test 
+function endTest() {
+    timerElement.textContent = `Times up!`;
+    finalScoreElement.textContent = `Final WPM: ${calculateWPM()}`;
+    textContainer.style.display = 'none';
+    tryAgainButton.style.display = 'block';
+}
+
+//calculate the words per minute with error adjustment
+function calculateWPM() {
+    const wordsTyped = totalTyped.trim().split(/\s+/).length; 
+    const baseWPM = Math.round((wordsTyped / 60) * 60);
+    const adjustedWPM = Math.max(baseWPM - errorsChar, 0); 
+    return adjustedWPM;
+    
+}
 //event handler to display and handle text 
 document.addEventListener('keydown', (e) => {
+    startTimer();
+
     if(e.key === 'Backspace') {
         if(totalTyped.length > 0){
             currentCharIndex = Math.max(currentCharIndex - 1, 0);
@@ -65,10 +105,10 @@ document.addEventListener('keydown', (e) => {
         }
     }else if(e.key.length === 1 && !e.ctrlKey && !e.metaKey){
         totalTyped += e.key;
-        currentCharIndex ++;
+        currentCharIndex++;
     }
 
-    console.log('e.key', e.key, 'totalTyped', totalTyped, 'currentindex', currentCharIndex);
+    //console.log('e.key', e.key, 'totalTyped', totalTyped, 'currentindex', currentCharIndex);
 
     const textArray = longText.split('');
     textContainer.innerText = '';
@@ -93,7 +133,7 @@ document.addEventListener('keydown', (e) => {
 
     if(totalTyped.length >= 20){
         const scrollAmount = (totalTyped.length - 20) * 14;
-        textContainer.scrollLeft;
+        textContainer.scrollLeft = scrollAmount;
     }
-})
+});
 
