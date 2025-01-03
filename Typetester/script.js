@@ -39,11 +39,10 @@ let currentCharIndex = 0;
 let errorsChar = 0;
 let longText = generationLongText();
 //timer variables 
-let timeLeft = 30;
+let timeLeft = 60;
 let timerIntervel;
 let typingStarted = false;
 
-textContainer.textContent = longText;
 
 //shuffleArray 
 function shuffleArray(array) {
@@ -137,3 +136,44 @@ document.addEventListener('keydown', (e) => {
     }
 });
 
+function resetTest() {
+    clearInterval(timerIntervel);
+    timeLeft = 60;
+    timerElement.textContent = `Time left: ${timeLeft}`;
+    finalScoreElement.textContent = '';
+    textContainer.style.display = 'block';
+    tryAgainButton.style.display = 'none';
+    totalTyped = '';
+    typingStarted = false;
+    currentCharIndex = 0;
+    errorsChar = 0;
+    textContainer.scrollLeft = 0;
+    longText = generationLongText();
+    init();
+}
+
+//initialize function 
+function init() {
+    if(isMobileDevice) {
+        showMobileMessage();
+    }else {
+        textContainer.textContent = longText;
+        timerElement.textContent = `Time left: ${timeLeft}`;
+    }
+}
+
+//try again listener 
+tryAgainButton.addEventListener('click', resetTest);
+
+//detect if mobile 
+function isMobileDevice() {
+    return /Mobi|Android/i.test(navigator.userAgent) || window.innerWidth < 800;
+}
+
+//show message to mobile user
+function showMobileMessage() {
+    textContainer.textContent = 'this typing test is designed for desktop';
+}
+
+//startup 
+init();
