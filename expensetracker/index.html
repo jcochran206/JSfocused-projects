@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Expense tracker</title>
+
+</head>
+<body>
+    <div class="container">
+        <h1>Monthly Expense tracker</h1>
+        <div class="form-container">
+            <form action="" id="expense-form">
+                <div class="inputs-container">
+                    <div class="input-group">
+                        <label for="month">Month</label>
+                        <select name="month" id="month">
+                            <option value="Jan">Jan</option>
+                            <option value="Feb">Februrary</option>
+                            <option value="Mar">March</option>
+                            <option value="Apr">April</option>
+                            <option value="May">May</option>
+                            <option value="Jun">June</option>
+                            <option value="Jul">July</option>
+                            <option value="Aug">August</option>
+                            <option value="Sep">September</option>
+                            <option value="Oct">October</option>
+                            <option value="Nov">November</option>
+                            <option value="Dec">December</option>
+                        </select>
+                    </div>
+
+                    <!--year grp-->
+                    <div class="input-group">
+                        <label for="year">Year</label>
+                        <select name="year" id="year">
+                            
+                        </select>
+                    </div>
+                    
+                    <!--categories-->
+                    <div class="input-group">
+                        <label for="category">Category</label>
+                        <select name="category" id="category">
+                            <option value="Mortgage">Mortgage</option>
+                            <option value="Food">Food</option>
+                            <option value="Auto">Auto</option>
+                            <option value="Utilities">Utilities</option>
+                            <option value="Misc">Misc</option>
+                        </select>
+                    </div>
+
+                    <!--Amounts-->
+                    <div class="input-group">
+                        <label for="Amount">Amount</label>
+                        <input type="Number" id="amount" name="amount" required>
+                    </div>
+                </div>
+
+                <button type="submit">Add expense</button>
+            </form>
+        </div>
+
+        <div class="chart-container">
+            <canvas id="expense-chart"></canvas>
+        </div>
+    </div>
+    <!-- Script -->
+    <script src="script.js"></script>
+</body>
+</html>
