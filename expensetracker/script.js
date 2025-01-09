@@ -62,8 +62,17 @@ document.addEventListener('DOMContentLoaded', () => {
     //add new data
 
     //Events Listeners
-
+    expenseForm.addEventListener('submit', handleSubmit);
+    monthSelect.addEventListener('change', updateChart);
+    yearSelect.addEventListener('change', updateChart);
     //default
-
+    function setDefaultMonthYear() {
+        const now = new Date();
+        const initialMonth = now.toLocaleString('default', {month: 'long'});
+        const initialYear = now.getFullYear();
+        monthSelect.value = initialMonth;
+        yearSelect.value = initialYear;
+    }
     //initialize
+   // setDefaultMonthYear();
 })
