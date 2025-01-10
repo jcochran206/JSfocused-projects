@@ -60,7 +60,28 @@ document.addEventListener('DOMContentLoaded', () => {
     //visualize data
 
     //add new data
+    function handleSubmit(event) {
+        event.preventDefault();
+        getSelectMonthYear();
 
+        const category = event.target.category.value;
+        const amount = parseFloat(event.target.amount.value);
+        const currentAmount = expenses[selectedMonth][category] || 0;
+
+        if(amount > 0) {
+            expense[selectedMonth][category] = currentAmount + amount;
+
+        }else if (amount < 0 && currentAmount >= Math.abs(amount)){
+            expenses[selectedMonth][category] = currentAmount + amount; 
+        }else {
+            alert('Invalid amount: Cannot reduce the category below zero');
+            return;
+        }
+
+        saveExpensesToLocalStorage(selectedMonth, selectedYear);
+        updateChart();
+        amountInput.value = "";
+    }
     //Events Listeners
     expenseForm.addEventListener('submit', handleSubmit);
     monthSelect.addEventListener('change', updateChart);
