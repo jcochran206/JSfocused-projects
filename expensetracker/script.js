@@ -58,7 +58,52 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     //visualize data
+    function updateChart() {
+        getSelectedMonthYear();
 
+        // Update expenses object with the loaded data
+        const expenseData = getExpensesFromLocalStorage(selectedMonth, selectedYear);
+        Object.assign(expenses[selectedMonth], expenseData);
+
+        const ctx = expenseChart.getContext('2d');
+
+        if (myChart) {
+            myChart.destroy();
+        }
+
+        myChart = new Chart(ctx, {
+            type: 'doughnut',
+            data: {
+                labels: Object.keys(expenses[selectedMonth]),
+                datasets: [{
+                    data: Object.values(expenses[selectedMonth]),
+                    backgroundColor: [
+                        '#FF6384', // Housing
+                        '#4CAF50', // Food
+                        '#FFCE56', // Transportation
+                        '#36A2EB', // Bills
+                        '#FF9F40'  // Miscellaneous
+                    ],
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    legend: {
+                        display: true,
+                        position: 'top',
+                    },
+                    tooltip: {
+                        callbacks: {
+                            label: function(tooltipItem) {
+                                return `${tooltipItem.label}: $${tooltipItem.raw}`;
+                            }
+                        }
+                    }
+                }
+            }
+        });
+    }
     //add new data
     function handleSubmit(event) {
         event.preventDefault();
