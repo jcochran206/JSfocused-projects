@@ -140,5 +140,6 @@ document.addEventListener('DOMContentLoaded', () => {
         yearSelect.value = initialYear;
     }
     //initialize
-   // setDefaultMonthYear();
+   setDefaultMonthYear();
+   updateChart();
 })
