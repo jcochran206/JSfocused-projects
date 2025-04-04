@@ -1,0 +1,22 @@
+:root {
+    --main-bg-color:#ffc300;
+    --secondary-color: #001d3d;
+    --primary-text: #000814;
+    --secondary-text: #dad7cd;
+    --accent-color:#ffd60a;
+    --accent-2color: #003566;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    font-family: sans-serif;
+    box-sizing: border-box;
+}
+
+.container {
+    width: 100%;
+    min-height: 100vh;
+    background: linear-gradient(135deg, var(--accent-2color), var(--secondary-text));
+    padding: 10px;
+}
