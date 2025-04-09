@@ -4,7 +4,7 @@
     --primary-text: #000814;
     --secondary-text: #dad7cd;
     --accent-color:#ffd60a;
-    --accent-2color: #003566;
+    --accent2-color: #003566;
 }
 
 * {
@@ -40,14 +40,18 @@
 
 /* button */
 #add {
-    height: 10%;
-    width: 40%;
+    font-size: 24px;
+    padding: 8px 12px;
+    border-radius: 8px;
+    border: none;
+    background-color: var(--accent-color);
+    transition: .5s;
+    cursor: pointer;
 }
 
-button {
-    background: var(--main-bg-color);
-    border-radius: 20px;
-    border: none;
-    font-size: 16px;
+#add:disabled {
+    background-color: revert;
+    cursor: default;
 }
+
 
