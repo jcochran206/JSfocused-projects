@@ -11,13 +11,31 @@
 //capture input and elements 
 const input = document.getElementById('todo-input');
 const addBtn = document.getElementById('add');
+const todoList = document.getElementById('todolist');
 //listen to events
+addBtn.addEventListener('click', onClickAdd);
 input.addEventListener('input', onTypeTodo);
 
 //functions
+function onClickAdd(){
+    const li = createListItem(input.value); //create item
+    todoList.appendChild(li); //add input
+    input.value = ''; //clear input
+    addBtn.disabled = true;
+}
+
 function onTypeTodo(){
     //disable 
     addBtn.disabled = input.value.length === 0;
 }
 
+function createListItem(name){
+    const li = document.createElement('li');
 
+    const heading = document.createElement('h2');
+    heading.textContent = name;
+
+    const deleteBtn = document.createElement('button');
+    deleteBtn.textContent = 'x';
+    deleteBtn.classList.add('delete-btn');
+}

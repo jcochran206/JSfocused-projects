@@ -54,4 +54,21 @@
     cursor: default;
 }
 
+.delete-btn {
+    background: none;
+    color: white;
+    border: 1px solid transparent;
+    border-radius: 100%;
+    height: 24px;
+    width: 24px;
+    font-size: 14px;
+    font-weight: bold;
+    padding: 0;
+    transition: 0.5s;
+    cursor: pointer;
+}
 
+.delete-btn:hover{
+    border-color: white;
+    transform: scale(1.2);
+}
