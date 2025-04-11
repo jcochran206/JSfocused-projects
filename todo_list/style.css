@@ -19,7 +19,7 @@
     justify-content: center;
     width: 100%;
     min-height: 100vh;
-    background: linear-gradient(135deg, var(--accent-2color), var(--secondary-text));
+    background: linear-gradient(135deg, var(--accent2-color), var(--secondary-text));
     padding: 10px;
 }
 
@@ -71,4 +71,18 @@
 .delete-btn:hover{
     border-color: white;
     transform: scale(1.2);
+}
+/*ul Li*/
+ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 24px auto;
+}
+
+li {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 12px;
+    
 }

@@ -38,4 +38,13 @@ function createListItem(name){
     const deleteBtn = document.createElement('button');
     deleteBtn.textContent = 'x';
     deleteBtn.classList.add('delete-btn');
+    deleteBtn.addEventListener('click', onClickDelete);
+
+    li.appendChild(heading);
+    li.appendChild(deleteBtn);
+    return li;
+}
+
+function onClickDelete(){
+    this.parentNode.remove();
 }
