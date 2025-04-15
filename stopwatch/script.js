@@ -39,4 +39,24 @@ function resetTimer(){
 
 function updateTimer(){
     const milElapsed = Date.now() - lastTimerStartTime;
+    const secElapsed = milElapsed / 1000;
+    const minElapsed = secElapsed / 60;
+
+    const miliText = formatNumber(milElapsed % 1000, 3);
+    const secText = formatNumber(Math.floor(secElapsed) % 60,2);
+    const minsText = formatNumber(Math.floor(minElapsed), 2);
+
+    timer.textContent = `${minsText}:${secText}:${miliText}`;
+
+    timerID = requestAnimationFrame(updateTimer);
+}
+
+function formatNumber(number, desiredLength){
+    const stringNum = String(number);
+
+    if(stringNum.length > desiredLength){
+        return stringNum.slice(0, desiredLength);
+    }
+
+    return stringNum.padStart(desiredLength, 0);
 }
