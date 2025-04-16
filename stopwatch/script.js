@@ -37,7 +37,7 @@ function stopTimer(){
 
 function resetTimer(){
     resetBtn.disabled = true;
-    timer.textContext = "00:00:000";
+    timer.textContent = '00:00:000';
 
     milLisElapsedBeforeLastStart = 0;
 }
