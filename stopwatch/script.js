@@ -1,6 +1,7 @@
 /* globals */
 let timerID; 
 let lastTimerStartTime = 0;
+let milLisElapsedBeforeLastStart = 0;
 
 /* Get elements for the stop watch ie start stop reset*/
 const timer = document.getElementById('timer');
@@ -12,6 +13,7 @@ const resetBtn = document.getElementById('reset-btn');
 startBtn.addEventListener('click', startTimer);
 stopBtn.addEventListener('click', stopTimer);
 resetBtn.addEventListener('click', resetTimer);
+
 /* functions for time and enable buttons pause and reset back to initial start  */
 function startTimer(){
     startBtn.disabled = true;
@@ -28,6 +30,8 @@ function stopTimer(){
     stopBtn.disabled = true;
     resetBtn.disabled = false;
 
+    milLisElapsedBeforeLastStart += Date.now() - lastTimerStartTime;
+
     cancelAnimationFrame(timerID);
 }
 
@@ -35,15 +39,16 @@ function resetTimer(){
     resetBtn.disabled = true;
     timer.textContext = "00:00:000";
 
+    milLisElapsedBeforeLastStart = 0;
 }
 
 function updateTimer(){
-    const milElapsed = Date.now() - lastTimerStartTime;
+    const milElapsed = Date.now() - lastTimerStartTime + milLisElapsedBeforeLastStart;
     const secElapsed = milElapsed / 1000;
     const minElapsed = secElapsed / 60;
 
     const miliText = formatNumber(milElapsed % 1000, 3);
-    const secText = formatNumber(Math.floor(secElapsed) % 60,2);
+    const secText = formatNumber(Math.floor(secElapsed) % 60, 2);
     const minsText = formatNumber(Math.floor(minElapsed), 2);
 
     timer.textContent = `${minsText}:${secText}:${miliText}`;
@@ -60,3 +65,4 @@ function formatNumber(number, desiredLength){
 
     return stringNum.padStart(desiredLength, 0);
 }
+
