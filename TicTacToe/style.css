@@ -1,0 +1,66 @@
+:root {
+    --main-bg-color:#ffc300;
+    --secondary-color: #001d3d;
+    --primary-text: #000814;
+    --secondary-text: #dad7cd;
+    --accent-color:#ffd60a;
+    --accent2-color: #003566;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    font-family: sans-serif;
+    box-sizing: border-box;
+}
+/* board items */
+#board {
+    width: 280px;
+    min-height: 450px;
+    border-radius: 10%;
+    padding: 0 20px 20px 20px;
+    text-align: center;
+    background-color: var(--accent2-color);
+    color: azure;
+}
+
+table {
+    margin: auto;
+    border-spacing: 8px;
+}
+
+.game-square{
+    font-size: 50px;
+    width: 70px;
+    height: 70px;
+    vertical-align: top;
+}
+
+.game-square {
+    cursor: default;
+}
+
+#restart-button {
+    display: none;
+    font-size: 24px;
+    padding: 12px;
+    margin: 12px auto;
+}
+
+/* global styles */
+h1 {
+    padding-top: 12px;
+}
+
+h2 {
+    margin: 8px;
+}
+
+button {
+    font: bold;
+    border-radius: 8px;
+    cursor: pointer;
+    background-color: var(--main-bg-color);
+    border: var(--secondary-color);
+    color: azure;
+}
