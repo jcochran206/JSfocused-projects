@@ -100,7 +100,7 @@ function restartGame() {
         gameSquare.textContent = '';
         gameSquare.disabled = false;
     })
-    restartButton.style.display = false;
+    restartButton.style.display = 'none';
 }
 
 function generateEmptyBoard(){
