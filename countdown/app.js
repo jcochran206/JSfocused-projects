@@ -7,7 +7,7 @@ const minuteselm = document.getElementById('minutes');
 const countDownDate = new Date("June 9, 2025 10:00:00").getTime();
 
 /* create function to conduct countdown and conditional for function reaching zero */
-function countDownTarget(targetDateString, countdown){
+function countDownTarget(targetDateString, elementId){
     const targetDate = new Date(targetDateString);
 
     function updateCountdown(){
@@ -24,12 +24,11 @@ function countDownTarget(targetDateString, countdown){
         const hours = Math.floor(timeleft/ (1000 * 60 * 60) % 24);
         const minutes = Math.floor(timeleft/ (1000 * 60) % 60);
 
-        dayselm.innerText = `${days} D`;
-        hourselm.innerText = `${hours} H`;
-        minuteselm.innerText = `${minutes} M`;
+        document.getElementById(elementId).innerText = `${days}d ${hours}h ${minutes}m`;
     }
 
     const intervalId = setInterval(updateCountdown, 1000);
     updateCountdown();
-    
 }
+
+countDownTarget(countDownDate,"countdown");
